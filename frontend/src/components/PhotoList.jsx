@@ -2,7 +2,7 @@ import React from "react";
 
 import "../styles/PhotoList.scss";
 
-const sampleDataForPhotoList = [
+const photosArray = [
   {
     id: "1",
     location: {
