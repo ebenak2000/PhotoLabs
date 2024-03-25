@@ -1,7 +1,9 @@
 import React from 'react';
 
 import PhotoListItem from './components/PhotoListItem';
+import PhotoFavButton from './components/PhotoFavButton';
 import './App.scss';
+
 
 const photosArray = [
   {
@@ -30,14 +32,16 @@ const photosArray = [
 const App = () => (
   <div className="App">
     {photosArray.map(photo => (
-      <PhotoListItem
-        key={photo.id}
-        id={photo.id}
-        location={`${photo.location.city}, ${photo.location.country}`}
-        imageSource={photo.imageSource}
-        username={photo.username}
-        profile={photo.profile}
-      />
+      <div key={photo.id} className="photo-container">
+        <PhotoListItem
+          id={photo.id}
+          location={`${photo.location.city}, ${photo.location.country}`}
+          imageSource={photo.imageSource}
+          username={photo.username}
+          profile={photo.profile}
+        />
+        <PhotoFavButton /> {}
+      </div>
     ))}
   </div>
 );
