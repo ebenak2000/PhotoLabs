@@ -67,7 +67,6 @@ const PhotoList = () => {
             imageSource={photo.urls.regular}
             username={photo.user.name}
             profile={photo.user.profile}
-            topics={photo.topics} // Ensure each photo object has a 'topics' array
           />
         </li>
       ))}

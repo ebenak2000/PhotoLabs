@@ -4,14 +4,14 @@ import PhotoList from './PhotoList';
 import '../styles/HomeRoute.scss';
 
 const HomeRoute = () => {
-    return (
-      <div className="home-route">
-        <TopNavigationBar/>
-        <div className="home-route__photos-section">
-            <PhotoList/>
-        </div>
+  return (
+    <div className="home-route">
+      <TopNavigationBar/>
+      <div className="home-route__photos-section">
+        <PhotoList/>
       </div>
-    );
-  };
+    </div>
+  );
+};
   
-  export default HomeRoute;
+export default HomeRoute;
