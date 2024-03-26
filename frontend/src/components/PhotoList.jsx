@@ -6,14 +6,14 @@ import photos from '../mocks/photos';
 const PhotoList = () => {
   return (
     <ul className="photo-list">
-      {photos.map(photos => (
-        <li key={photos.id}>
+      {photos.map(photo => ( // Changed from 'photos' to 'photo'
+        <li key={photo.id}>
           <PhotoListItem
-            id={photos.id}
-            location={`${photos.location.city}, ${photos.location.country}`}
-            imageSource={photos.urls.regular}
-            username={photos.user.name}
-            profile={photos.user.profile}
+            id={photo.id}
+            location={`${photo.location.city}, ${photo.location.country}`}
+            imageSource={photo.urls.regular}
+            username={photo.user.name}
+            profile={photo.user.profile}
           />
         </li>
       ))}
