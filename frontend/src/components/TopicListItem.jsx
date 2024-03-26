@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../styles/TopicList.scss";
+import "../styles/TopicListItem.scss";
 
 const TopicListItem = ({ label }) => {
   return (
