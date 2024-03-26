@@ -1,9 +1,21 @@
 // frontend/src/components/PhotoListItem.jsx
 import React from "react";
 import "../styles/PhotoListItem.scss";
+import { useFavorites } from '../contexts/FavoritesContext';
 import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = ({ id, location, imageSource, username, profile }) => {
+
+  const { addFavorite, removeFavorite, isFavorite } = useFavorites();
+
+  const toggleFavorite = () => {
+    if (isFavorite(id)) {
+      removeFavorite(id);
+    } else {
+      addFavorite(id);
+    }
+  };
+
   return (
     <div className="photo-list__item" key={id}>
       <img src={imageSource} alt={`Photo by ${username}`} className="photo-list__image" />
@@ -13,7 +25,7 @@ const PhotoListItem = ({ id, location, imageSource, username, profile }) => {
           <h4 className="photo-list__user-name">{username}</h4>
           <p className="photo-list__user-location">{location}</p>
         </div>
-        <PhotoFavButton />
+        <PhotoFavButton onClick={toggleFavorite} selected={isFavorite(id)} />
       </div>
     </div>
   );
