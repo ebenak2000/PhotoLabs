@@ -1,7 +1,7 @@
 // frontend/src/components/PhotoListItem.jsx
 import React from "react";
 import "../styles/PhotoListItem.scss";
-import { useFavorites } from '../contexts/FavoritesContext';
+import { useFavorites } from '../contexts/favoritesContext';
 import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = ({ id, location, imageSource, username, profile }) => {
