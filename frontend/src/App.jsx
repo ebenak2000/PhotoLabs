@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PhotoListItem from './components/PhotoListItem';
+import PhotoList from './components/PhotoList';
 import PhotoFavButton from './components/PhotoFavButton';
 import './App.scss';
 
@@ -31,18 +31,8 @@ const photosArray = [
 
 const App = () => (
   <div className="App">
-    {photosArray.map(photo => (
-      <div key={photo.id} className="photo-container">
-        <PhotoListItem
-          id={photo.id}
-          location={`${photo.location.city}, ${photo.location.country}`}
-          imageSource={photo.imageSource}
-          username={photo.username}
-          profile={photo.profile}
-        />
-        <PhotoFavButton /> {}
-      </div>
-    ))}
+    <PhotoList />
+    <PhotoFavButton /> {}
   </div>
 );
 
