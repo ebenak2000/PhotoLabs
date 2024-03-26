@@ -16,7 +16,6 @@ const PhotoListItem = ({ id, location, imageSource, username, profile }) => {
         </div>
         <PhotoFavButton />
       </div>
-      <TopicList />
     </div>
   );
 };
