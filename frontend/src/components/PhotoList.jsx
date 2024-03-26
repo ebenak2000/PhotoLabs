@@ -34,7 +34,7 @@ const sampleDataForPhotoList = [
     user: {
       id: "2",
       username: "exampleuser",
-      name: "Joe Example",
+      name: "Mary Smith",
       profile: `${process.env.PUBLIC_URL}/profile-2.jpg`,
     },
   },
@@ -51,7 +51,7 @@ const sampleDataForPhotoList = [
     user: {
       id: "3",
       username: "exampleuser",
-      name: "Joe Example",
+      name: "John Doe",
       profile: `${process.env.PUBLIC_URL}/profile-3.jpg`,
     },
   },
@@ -68,9 +68,7 @@ const PhotoList = () => {
             imageSource={photo.urls.regular}
             username={photo.user.name}
             profile={photo.user.profile}
-
           />
-          <PhotoFavButton />
         </li>
       ))}
     </ul>
