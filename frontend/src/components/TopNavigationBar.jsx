@@ -11,7 +11,7 @@ const TopNavigationBar = () => {
     <div className="top-nav-bar">
       <span className="top-nav-bar__logo">PhotoLabs</span>
       <TopicList />
-      <FavBadge isFavPhotoExist={favorites.length > 0} />
+      <FavBadge count={favorites.length} />
     </div>
   );
 };
