@@ -1,18 +1,19 @@
 import React from "react";
 import PhotoListItem from './PhotoListItem';
 import "../styles/PhotoList.scss";
+import photos from '../mocks/photos';
 
-const PhotoList = ({ photos }) => {
+const PhotoList = () => {
   return (
     <ul className="photo-list">
-      {photos.map(photo => (
-        <li key={photo.id}>
+      {photos.map(photos => (
+        <li key={photos.id}>
           <PhotoListItem
-            id={photo.id}
-            location={`${photo.location.city}, ${photo.location.country}`}
-            imageSource={photo.urls.regular}
-            username={photo.user.name}
-            profile={photo.user.profile}
+            id={photos.id}
+            location={`${photos.location.city}, ${photos.location.country}`}
+            imageSource={photos.urls.regular}
+            username={photos.user.name}
+            profile={photos.user.profile}
           />
         </li>
       ))}
