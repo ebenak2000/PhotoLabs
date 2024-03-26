@@ -2,6 +2,7 @@
 import React from "react";
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
+import TopicList from "./TopicList";
 
 const PhotoListItem = ({ id, location, imageSource, username, profile }) => {
   return (
@@ -15,6 +16,7 @@ const PhotoListItem = ({ id, location, imageSource, username, profile }) => {
         </div>
         <PhotoFavButton />
       </div>
+      <TopicList />
     </div>
   );
 };
