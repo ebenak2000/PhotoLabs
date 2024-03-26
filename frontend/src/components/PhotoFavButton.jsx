@@ -9,9 +9,11 @@ const PhotoFavButton = function() {
     setIsFaved(!isFaved);
   };
 
+  console.log("Rendering PhotoFavButton", new Date().toISOString()); // For debugging
+
   return (
     <div className="photo-list__fav-icon" onClick={toggleFav}>
-      <FavIcon selected={isFaved} /> {}
+      <FavIcon selected={isFaved} />
     </div>
   );
 };

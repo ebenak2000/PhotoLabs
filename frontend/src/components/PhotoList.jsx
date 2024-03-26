@@ -2,7 +2,6 @@ import React from "react";
 
 import "../styles/PhotoList.scss";
 import PhotoListItem from './PhotoListItem';
-import PhotoFavButton from './PhotoFavButton';
 const sampleDataForPhotoList = [
   {
     id: "1",
