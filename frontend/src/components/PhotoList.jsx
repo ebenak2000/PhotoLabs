@@ -2,6 +2,7 @@ import React from "react";
 
 import "../styles/PhotoList.scss";
 import PhotoListItem from './PhotoListItem';
+import PhotoFavButton from './PhotoFavButton';
 const sampleDataForPhotoList = [
   {
     id: "1",
@@ -34,7 +35,7 @@ const sampleDataForPhotoList = [
       id: "2",
       username: "exampleuser",
       name: "Joe Example",
-      profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
+      profile: `${process.env.PUBLIC_URL}/profile-2.jpg`,
     },
   },
   {
@@ -51,7 +52,7 @@ const sampleDataForPhotoList = [
       id: "3",
       username: "exampleuser",
       name: "Joe Example",
-      profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
+      profile: `${process.env.PUBLIC_URL}/profile-3.jpg`,
     },
   },
 ];
@@ -60,14 +61,16 @@ const PhotoList = () => {
   return (
     <ul className="photo-list">
       {sampleDataForPhotoList.map(photo => (
-        <li key={photo.id} className="photo-container">
+        <li key={photo.id}>
           <PhotoListItem
             id={photo.id}
             location={`${photo.location.city}, ${photo.location.country}`}
-            imageSource={photo.imageSource}
-            username={photo.username}
-            profile={photo.profile}
+            imageSource={photo.urls.regular}
+            username={photo.user.name}
+            profile={photo.user.profile}
+
           />
+          <PhotoFavButton />
         </li>
       ))}
     </ul>
