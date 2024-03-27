@@ -1,4 +1,3 @@
-// frontend/src/components/PhotoListItem.jsx
 import React from "react";
 import "../styles/PhotoListItem.scss";
 import { useFavorites } from '../contexts/favoritesContext';
