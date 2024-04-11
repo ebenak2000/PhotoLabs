@@ -6,7 +6,7 @@ import photos from '../mocks/photos';
 const PhotoList = () => {
   return (
     <ul className="photo-list">
-      {photos.map(photo => ( // Changed from 'photos' to 'photo'
+      {photos.map(photo => (
         <li key={photo.id}>
           <PhotoListItem
             id={photo.id}

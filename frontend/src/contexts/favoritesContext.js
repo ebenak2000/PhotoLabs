@@ -7,19 +7,17 @@ export const useFavorites = () => useContext(FavoritesContext);
 export const FavoritesProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
 
-  const addFavorite = (photoId) => {
-    if (!favorites.includes(photoId)) {
-      setFavorites([...favorites, photoId]);
+  const addFavorite = (id) => {
+    if (!favorites.includes(id)) {
+      setFavorites([...favorites, id]);
     }
   };
 
-  const removeFavorite = (photoId) => {
-    setFavorites(favorites.filter(id => id !== photoId));
+  const removeFavorite = (id) => {
+    setFavorites(favorites.filter(favId => favId !== id));
   };
 
-  const isFavorite = (photoId) => {
-    return favorites.includes(photoId);
-  };
+  const isFavorite = (id) => favorites.includes(id);
 
   return (
     <FavoritesContext.Provider value={{ favorites, addFavorite, removeFavorite, isFavorite }}>
