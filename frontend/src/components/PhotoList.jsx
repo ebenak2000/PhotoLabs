@@ -34,6 +34,7 @@ const PhotoList = () => {
             <img src={selectedPhoto.urls.regular} alt={`Photo by ${selectedPhoto.user.name}`} style={{ maxWidth: '100%' }} />
             <p>Location: {`${selectedPhoto.location.city}, ${selectedPhoto.location.country}`}</p>
             <p>Photographer: {selectedPhoto.user.name}</p>
+            
           </div>
         )}
       </PhotoDetailsModal>

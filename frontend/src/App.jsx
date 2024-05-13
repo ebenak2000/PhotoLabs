@@ -3,7 +3,6 @@ import HomeRoute from './routes/HomeRoute';
 import './App.scss';
 import { FavoritesProvider } from './contexts/favoritesContext';
 
-// Mock Data Imports
 import photos from './mocks/photos';
 import topics from './mocks/topics';
 
