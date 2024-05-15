@@ -9,7 +9,7 @@ import topics from './mocks/topics';
 const App = () => (
   <FavoritesProvider>
     <div className="App">
-      <HomeRoute photos={photos} topics={topics} />
+      <HomeRoute photos={photos}  />
     </div>
   </FavoritesProvider>
 );

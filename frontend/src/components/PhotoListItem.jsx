@@ -3,8 +3,7 @@ import "../styles/PhotoListItem.scss";
 import { useFavorites } from '../contexts/favoritesContext';
 import PhotoFavButton from "./PhotoFavButton";
 
-const PhotoListItem = ({ id, location, imageSource, username, profile }) => {
-
+const PhotoListItem = ({ id, location, imageSource, username, profile, topics }) => {
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
 
   const toggleFavorite = () => {
@@ -26,6 +25,11 @@ const PhotoListItem = ({ id, location, imageSource, username, profile }) => {
         </div>
         <PhotoFavButton onClick={toggleFavorite} selected={isFavorite(id)} />
       </div>
+      <ul className="photo-list__topics">
+        {topics.map(topic => (
+          <li key={topic.id} className="photo-list__topic">{topic.title}</li>
+        ))}
+      </ul>
     </div>
   );
 };
