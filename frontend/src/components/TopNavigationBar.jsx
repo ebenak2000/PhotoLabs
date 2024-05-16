@@ -1,19 +1,27 @@
 import React from 'react';
-import FavBadge from './FavBadge';
+
 import '../styles/TopNavigationBar.scss';
 
-const TopNavigationBar = ({ topics, favourites, onTopicClick }) => {
+const TopNavigationBar = ({ topics, selectedTopic, onTopicClick, favourites }) => {
   return (
     <div className="top-navigation-bar">
-      <div className="top-nav-bar__logo">PhotoLabs</div>
-      <ul className="topics-list">
-        {topics.map(topic => (
-          <li key={topic.id} className="topic-item" onClick={() => onTopicClick(topic.id)}>
-            {topic.title}
-          </li>
+      <h1>PhotoLabs</h1>
+      <div className="topics">
+        {topics.map((topic) => (
+          <span
+            key={topic.id}
+            className={`topic ${selectedTopic === topic.id ? 'selected' : ''}`}
+            onClick={() => onTopicClick(topic.id)}
+          >
+            {topic.name}
+          </span>
         ))}
-      </ul>
-      <FavBadge count={favourites.length} />
+      </div>
+      <div className="favourites">
+        <span className="heart-icon">
+          ❤️ {favourites.length}
+        </span>
+      </div>
     </div>
   );
 };

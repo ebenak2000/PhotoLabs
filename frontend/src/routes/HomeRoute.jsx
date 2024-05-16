@@ -1,67 +1,50 @@
-import React, { useEffect, useState } from 'react';
-import PhotoList from '../components//PhotoList';
+import React from 'react';
+import PhotoList from '../components/PhotoList';
 import TopicList from '../components/TopicList';
-import TopNavigationBar from '../components//TopNavigationBar';
+import TopNavigationBar from '../components/TopNavigationBar';
 import PhotoDetailsModal from './PhotoDetailsModal';
 import '../styles/HomeRoute.scss';
 
-const HomeRoute = () => {
-  const [photos, setPhotos] = useState([]);
-  const [topics, setTopics] = useState([]);
-  const [selectedTopic, setSelectedTopic] = useState(null);
-  const [favourites, setFavourites] = useState([]);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const photosResponse = await fetch('http://localhost:8001/api/photos');
-      const photosData = await photosResponse.json();
-      setPhotos(photosData);
-
-      const topicsResponse = await fetch('http://localhost:8001/api/topics');
-      const topicsData = await topicsResponse.json();
-      setTopics(topicsData);
-    };
-    fetchData();
-  }, []);
-
-  const handleTopicClick = (topicId) => {
-    setSelectedTopic(topicId);
-  };
-
-  const toggleFavourite = (photoId) => {
-    setFavourites((prevFavourites) => {
-      if (prevFavourites.includes(photoId)) {
-        return prevFavourites.filter(id => id !== photoId);
-      } else {
-        return [...prevFavourites, photoId];
-      }
-    });
-  };
-
-  const handlePhotoClick = (photo) => {
-    setSelectedPhoto(photo);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedPhoto(null);
-  };
+const HomeRoute = ({
+  photos,
+  topics,
+  selectedTopic,
+  favourites,
+  selectedPhoto,
+  onPhotoSelect,
+  updateToFavPhotoIds,
+  onLoadTopic,
+  onClosePhotoDetailsModal,
+}) => {
+  if (!photos || !topics) {
+    return null; // Ensure photos and topics are defined before rendering
+  }
 
   const filteredPhotos = selectedTopic
-    ? photos.filter(photo => photo.topics.some(topic => topic.id === selectedTopic))
+    ? photos.filter(photo => photo.topics && photo.topics.some(topic => topic.id === selectedTopic))
     : photos;
 
   return (
     <div className="home-route">
-      <TopNavigationBar topics={topics} favourites={favourites} onTopicClick={handleTopicClick} />
-      <TopicList topics={topics} onTopicClick={handleTopicClick} />
-      <PhotoList photos={filteredPhotos} onToggleFavourite={toggleFavourite} favourites={favourites} onPhotoClick={handlePhotoClick} />
+      <TopNavigationBar
+        topics={topics}
+        selectedTopic={selectedTopic}
+        favourites={favourites}
+        onTopicClick={onLoadTopic}
+      />
+      <TopicList topics={topics} onTopicClick={onLoadTopic} />
+      <PhotoList
+        photos={filteredPhotos}
+        onToggleFavourite={updateToFavPhotoIds}
+        favourites={favourites}
+        onPhotoClick={onPhotoSelect}
+      />
       {selectedPhoto && (
         <PhotoDetailsModal
           photo={selectedPhoto}
-          onClose={handleCloseModal}
+          onClose={onClosePhotoDetailsModal}
           similarPhotos={selectedPhoto.similar_photos}
-          onToggleFavourite={toggleFavourite}
+          onToggleFavourite={updateToFavPhotoIds}
           favourites={favourites}
         />
       )}
