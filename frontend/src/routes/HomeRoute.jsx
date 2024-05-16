@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import PhotoList from './PhotoList';
-import TopicList from './TopicList';
-import TopNavigationBar from './TopNavigationBar';
+import PhotoList from '../components//PhotoList';
+import TopicList from '../components/TopicList';
+import TopNavigationBar from '../components//TopNavigationBar';
+import PhotoDetailsModal from './PhotoDetailsModal';
 import '../styles/HomeRoute.scss';
 
 const HomeRoute = () => {
@@ -9,6 +10,7 @@ const HomeRoute = () => {
   const [topics, setTopics] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState(null);
   const [favourites, setFavourites] = useState([]);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,15 +39,32 @@ const HomeRoute = () => {
     });
   };
 
+  const handlePhotoClick = (photo) => {
+    setSelectedPhoto(photo);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedPhoto(null);
+  };
+
   const filteredPhotos = selectedTopic
     ? photos.filter(photo => photo.topics.some(topic => topic.id === selectedTopic))
     : photos;
 
   return (
     <div className="home-route">
-      <TopNavigationBar topics={topics} favourites={favourites} />
+      <TopNavigationBar topics={topics} favourites={favourites} onTopicClick={handleTopicClick} />
       <TopicList topics={topics} onTopicClick={handleTopicClick} />
-      <PhotoList photos={filteredPhotos} onToggleFavourite={toggleFavourite} favourites={favourites} />
+      <PhotoList photos={filteredPhotos} onToggleFavourite={toggleFavourite} favourites={favourites} onPhotoClick={handlePhotoClick} />
+      {selectedPhoto && (
+        <PhotoDetailsModal
+          photo={selectedPhoto}
+          onClose={handleCloseModal}
+          similarPhotos={selectedPhoto.similar_photos}
+          onToggleFavourite={toggleFavourite}
+          favourites={favourites}
+        />
+      )}
     </div>
   );
 };

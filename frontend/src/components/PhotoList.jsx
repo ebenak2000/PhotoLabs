@@ -1,44 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PhotoListItem from './PhotoListItem';
-import PhotoDetailsModal from '../routes/PhotoDetailsModal';
-import "../styles/PhotoList.scss";
-import photos from '../mocks/photos';
+import '../styles/PhotoList.scss';
 
-const PhotoList = () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-
-  const handlePhotoClick = (photo) => {
-    setSelectedPhoto(photo);
-    setIsModalVisible(true);
-  };
-
+const PhotoList = ({ photos, onToggleFavourite, favourites, onPhotoClick }) => {
   return (
-    <>
-      <ul className="photo-list">
-        {photos.map(photo => (
-          <li key={photo.id} onClick={() => handlePhotoClick(photo)}>
-            <PhotoListItem
-              id={photo.id}
-              location={`${photo.location.city}, ${photo.location.country}`}
-              imageSource={photo.urls.regular}
-              username={photo.user.name}
-              profile={photo.user.profile}
-            />
-          </li>
-        ))}
-      </ul>
-      <PhotoDetailsModal isVisible={isModalVisible} setIsModalVisible={setIsModalVisible}>
-        {selectedPhoto && (
-          <div>
-            <img src={selectedPhoto.urls.regular} alt={`Photo by ${selectedPhoto.user.name}`} style={{ maxWidth: '100%' }} />
-            <p>Location: {`${selectedPhoto.location.city}, ${selectedPhoto.location.country}`}</p>
-            <p>Photographer: {selectedPhoto.user.name}</p>
-            
-          </div>
-        )}
-      </PhotoDetailsModal>
-    </>
+    <ul className="photo-list">
+      {photos.map(photo => (
+        <PhotoListItem
+          key={photo.id}
+          id={photo.id}
+          username={photo.user.username}
+          imageSource={photo.urls.regular}
+          location={`${photo.location.city}, ${photo.location.country}`}
+          profile={photo.user.profile}
+          topics={photo.topics || []}
+          isFavourite={favourites.includes(photo.id)}
+          onToggleFavourite={() => onToggleFavourite(photo.id)}
+          onPhotoClick={() => onPhotoClick(photo)}
+        />
+      ))}
+    </ul>
   );
 };
 
