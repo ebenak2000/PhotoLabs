@@ -1,13 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import FavIcon from './FavIcon';
-import '../styles/PhotoFavButton.scss';
+import './PhotoFavButton.scss';
 
-const PhotoFavButton = ({ onClick, selected }) => {
-  return (
-    <div className="photo-list__fav-icon" onClick={onClick}>
-      <FavIcon selected={selected} />
-    </div>
-  );
-};
+const PhotoFavButton = ({ isFavorited, onClick }) => (
+  <FavIcon isFavorited={isFavorited} onClick={onClick} />
+);
 
 export default PhotoFavButton;

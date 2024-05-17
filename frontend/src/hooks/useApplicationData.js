@@ -7,7 +7,6 @@ export const ACTIONS = {
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
-  SET_SELECTED_TOPIC: 'SET_SELECTED_TOPIC',
 };
 
 const reducer = (state, action) => {
@@ -49,8 +48,8 @@ const reducer = (state, action) => {
 
 const useApplicationData = () => {
   const initialState = {
-    photoData: [],
-    topicData: [],
+    photos: [],
+    topics: [],
     selectedTopic: null,
     favourites: [],
     selectedPhoto: null,
@@ -59,23 +58,20 @@ const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const photosResponse = await fetch('/api/photos');
+    const fetchData = async() => {
+      const photosResponse = await fetch('http://localhost:8001/api/photos');
       const photosData = await photosResponse.json();
-      dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: photosData });
+      dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { photos: photosData } });
 
-      const topicsResponse = await fetch('/api/topics');
+      const topicsResponse = await fetch('http://localhost:8001/api/topics');
       const topicsData = await topicsResponse.json();
-      dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: topicsData });
+      dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { topics: topicsData } });
     };
     fetchData();
   }, []);
 
-  const handleTopicClick = async (topicId) => {
-    const topicPhotosResponse = await fetch(`/api/topics/photos/${topicId}`);
-    const topicPhotosData = await topicPhotosResponse.json();
-    dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: topicPhotosData });
-    dispatch({ type: ACTIONS.SET_SELECTED_TOPIC, payload: { topic: topicId } });
+  const handleTopicClick = (topicId) => {
+    dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { topicId } });
   };
 
   const toggleFavourite = (photoId) => {

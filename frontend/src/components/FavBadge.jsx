@@ -1,13 +1,14 @@
 import React from 'react';
-import FavIcon from './FavIcon';
+import { useFavorites } from '../contexts/favoritesContext';
+import './FavBadge.scss';
 
-import '../styles/FavBadge.scss';
+const FavBadge = () => {
+  const { favorites } = useFavorites();
 
-const FavBadge = ({ count }) => {
   return (
-    <div className='fav-badge'>
-      <FavIcon displayAlert={count > 0}/>
-      {count > 0 && <span className="fav-count">{count}</span>}
+    <div className="fav-badge">
+      <span className="fav-count">{favorites.length}</span>
+      <i className="fa fa-heart" />
     </div>
   );
 };

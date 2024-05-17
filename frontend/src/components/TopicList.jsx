@@ -1,18 +1,12 @@
-import React from "react";
+import React from 'react';
+import '../styles/TopicList.scss';
 import TopicListItem from './TopicListItem';
-import "../styles/TopicList.scss";
-import topics from '../mocks/topics';
 
-const TopicList = ({ onTopicClick }) => {
+const TopicList = ({ topics, onSelectTopic }) => {
   return (
-    <div className="top-nav-bar__topic-list">
+    <div className="topic-list">
       {topics.map(topic => (
-        <TopicListItem
-          key={topic.id}
-          id={topic.id}
-          title={topic.title}
-          onClick={onTopicClick}
-        />
+        <TopicListItem key={topic.id} topic={topic} onSelectTopic={onSelectTopic} />
       ))}
     </div>
   );

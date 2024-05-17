@@ -11,11 +11,8 @@ const App = () => {
     <FavoritesProvider>
       <div className="App">
         <HomeRoute
-          photos={state.photoData}
-          topics={state.topicData}
-          selectedTopic={state.selectedTopic}
-          favourites={state.favourites}
-          selectedPhoto={state.selectedPhoto}
+          photos={state.photos}
+          topics={state.topics}
           onPhotoSelect={actions.onPhotoSelect}
           updateToFavPhotoIds={actions.updateToFavPhotoIds}
           onLoadTopic={actions.onLoadTopic}
